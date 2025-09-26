@@ -6,7 +6,7 @@ require_once __DIR__."/../service/PokemonService.php";
 
 $poke = null;
 $titulo = "Inserir Pokemon";
-$ivs = false;
+
 $nome      = null;
 $lvl       = null;
 $regiao    = null; 
@@ -24,12 +24,12 @@ $erroMsg = "";
 
 
 if($_POST!==[]){
-    $nome      = trim($_POST['nome']) ? ucfirst(trim($_POST['nome']))  : null;
+    $nome      = trim($_POST['nome']) ? ucfirst(strtolower(trim($_POST['nome'])))  : null;
     $lvl       = is_numeric($_POST['lvl']) ? $_POST['lvl'] : null;
     $regiao    = is_numeric($_POST['regiao']) ? $_POST['regiao'] : null;
     $oRegiao = RegiaoController::getById($regiao);
     $regiaoNome = $oRegiao ? $oRegiao->getNome() : null;
-    if($_POST['auto']==1){
+    if($_POST['auto']==1 || $_POST['auto']==""){
         $hp        = is_numeric($_POST['hp']) ? $_POST['hp'] : null;
         $attack    = is_numeric($_POST['attack']) ? $_POST['attack'] : null;
         $defense   = is_numeric($_POST['defense']) ? $_POST['defense'] : null;
@@ -40,36 +40,15 @@ if($_POST!==[]){
         $tipo1     = is_numeric($_POST['tipo1']) ? $_POST['tipo1'] : null;
         $tipo2     = is_numeric($_POST['tipo2']) ? $_POST['tipo2'] : null;
     }elseif($_POST['auto']==2){
+        $pokeExist = 0;
         if(@get_headers("https://pokeapi.co/api/v2/pokemon/$nome-$regiaoNome")[0]=="HTTP/1.1 200 OK"){
             $pokeapi = file_get_contents("https://pokeapi.co/api/v2/pokemon/$nome-$regiaoNome");
-            $tpokeapi = json_decode($pokeapi,true);
-            $hp        = $tpokeapi['stats'][0]['base_stat'];
-            $attack    = $tpokeapi['stats'][1]['base_stat'];
-            $defense   = $tpokeapi['stats'][2]['base_stat'];
-            $spAttack  = $tpokeapi['stats'][3]['base_stat'];
-            $spDefense = $tpokeapi['stats'][4]['base_stat'];
-            $speed     = $tpokeapi['stats'][5]['base_stat'];
-            $sprite    = $tpokeapi['sprites']['other']['official-artwork']['front_default'];
-            $tipo1     = $tpokeapi['types'][0]['type']['name'];
-            $tipo2     = isset($tpokeapi['types'][1]) ? $tpokeapi['types'][1]['type']['name'] : null;
-
-            foreach(TipoController::listar() as $key => $value){
-                switch(strtolower($value->getNome())){
-                    case strtolower($tipo1):
-                        $tipo1 = $value->getId();
-                    break;
-
-                    case @strtolower($tipo2):
-                        $tipo2 = $value->getId();
-                    break;
-                    
-                    default:
-                    
-                    break;
-                }
-            }
-        }elseif(@get_headers("https://pokeapi.co/api/v2/pokemon/$nome")[0]=="HTTP/1.1 200 OK"){
+            $pokeExist++;
+        }elseif(@get_headers("https://pokeapi.co/api/v2/pokemon/$nome")[0]=="HTTP/1.1 200 OK" && "https://pokeapi.co/api/v2/pokemon/$nome"!="https://pokeapi.co/api/v2/pokemon/"){
             $pokeapi = file_get_contents("https://pokeapi.co/api/v2/pokemon/$nome");
+            $pokeExist++;
+        }
+        if($pokeExist){
             $tpokeapi = json_decode($pokeapi,true);
             $hp        = $tpokeapi['stats'][0]['base_stat'];
             $attack    = $tpokeapi['stats'][1]['base_stat'];

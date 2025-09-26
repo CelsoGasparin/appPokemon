@@ -21,20 +21,7 @@ input,select{
     color: rgb(220, 249, 255);
 }
 
-@media(max-width: 992px){
 
-    .sidebar{
-        position: fixed;
-        transform: translateX(-100%);
-        z-index: 1;
-        background-color: #212429;
-    }
-    .sidebar-show{
-        transform: translateX(0);
-        background-color: #212429;
-    }
-
-}
 
 .Botao-FODA{
     border-radius: 10px;

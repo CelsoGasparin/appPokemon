@@ -12,7 +12,7 @@ require_once __DIR__."/header.php";
 
         <div class="card">
             <div class="card-body">
-                <form class="inPoke" action="" method="POST">
+                <form class="inPoke" onsubmit="submitButton.disabled = true;" action="" method="POST">
                     <div class="row">
                         <div class="col-6">
                             <h1 class="card-title mb-2"><?= $titulo ?></h1>
@@ -91,7 +91,7 @@ require_once __DIR__."/header.php";
 
                             <input type="hidden" name='id' value="<?= $poke ? $poke->getId() : 0 ;?>">
                             <input type="hidden" name='auto' id="auto">
-                            <button type="submit" class="mt-3 Submit Botao-FODA btn btn-warning">Submit</button>
+                            <button type="submit" name="submitButton" class="mt-3 Submit Botao-FODA btn btn-warning">Submit</button>
 
                             <div class="erroMsg">
                                 <div style="color: black;background-color:red;border-radius:10px;border-color:black;">

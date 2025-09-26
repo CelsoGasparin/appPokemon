@@ -38,7 +38,7 @@ require_once __DIR__."/include/header.php";
                             <td style="width: 12vh;border:1px solid black;text-align: center;"><?= $pk->getId() ?></td>
                             <td style="width: 12vh;border:1px solid black;text-align: center;"><img src="<?= $pk->getSprite() ?>" style="width:20vh;" alt="Imagem Insana"></td>
                             <td style="width: 12vh;border:1px solid black;text-align: center;"><?= $pk->getNome() ?></td>
-                            <td style="width: 12vh;border:1px solid black;text-align: center;"><?= $pk->getLvl() ?></td>
+                            <td style="width: 12vh;border:1px solid black;text-align: center;">Lvl<?= $pk->getLvl() ?></td>
                             <td style="width: 12vh;border:1px solid black;text-align: center;"><?= $pk->getTipoString() ?></td>
                             <?php foreach($pk->getStat() as $stat): ?>
                                 <td style="width: 12vh;border:1px solid black;text-align: center;"><?= $stat ?></td>

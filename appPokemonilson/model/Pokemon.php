@@ -69,14 +69,14 @@ class Pokemon{
 
         return'<div class="modal fade" id="detalhes'.$this->id.'" tabindex="-1" >
         <div class="modal-dialog">
-            <div class="modal-content" style="background-color: black;">
+            <div class="modal-content" style="background-color: rgba(0, 17, 30, 1);">
                 <div class="modal-header">
                     <h1 class="texto modal-title fs-5" id="exampleModalLabel">'.$this->nome.' - Detalhes</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" >
 
-                    <img style="width:100%;" src="'.$this->sprite.'" alt="erroSilva">
+                    <img style="width:100%;background-color:black;" src="'.$this->sprite.'" alt="erroSilva">
                     <h2 class="texto text-center">'.$this->id.' - '.$this->nome.'</h2>
                     <br>
                     <h4 class="texto text-center">Level: '.$this->lvl.'</h4>
