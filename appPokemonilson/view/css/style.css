@@ -1,0 +1,70 @@
+.sidebar{
+    color: rgb(220, 249, 255);
+    transition: transform 0.18s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar a{
+    text-decoration: none;
+    color: rgb(220, 249, 255);
+    padding: 10px ;
+}
+.sidebar a:hover{
+    background-color: black;
+}
+
+input,select{
+    border-radius: 8px;
+}
+
+.texto{
+    color: rgb(220, 249, 255);
+}
+
+@media(max-width: 992px){
+
+    .sidebar{
+        position: fixed;
+        transform: translateX(-100%);
+        z-index: 1;
+        background-color: #212429;
+    }
+    .sidebar-show{
+        transform: translateX(0);
+        background-color: #212429;
+    }
+
+}
+
+.Botao-FODA{
+    border-radius: 10px;
+    background-color: #fcbc41;
+    color: black;
+    width: 40vh;
+    height: 5vh;
+    font-size: 3vh;
+}
+
+.tipos:focus + .texto-extra{
+    display: block;
+}
+.texto-extra:focus + .texto-extra{
+    display: none;
+}
+
+.tipos{
+    border-radius: 10px;
+    background-color: rgb(0, 255, 204);
+    color: #000000;
+    width: 100%;
+    
+}
+
+.texto-extra {
+    background-color: aquamarine;
+    border-radius: 10px;
+    color: #000000;
+    border: 2px solid #000000;
+    font-size: 16px;
+    display: none;
+}
